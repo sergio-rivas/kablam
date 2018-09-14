@@ -1,0 +1,9 @@
+<% if params[:target].present? %>
+
+var objRow = byId('<%= @object.html_id %>')
+var content = `<%= j render "data/models/#{@object.model_name.singular}", obj: @object %>`
+var newRow = HTMLElement.From(content);
+
+objRow.innerHTML = newRow.innerHTML
+<% end %>
+<%= render_flash message: 'Information has been updated 👍' %>

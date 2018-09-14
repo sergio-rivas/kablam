@@ -21,7 +21,7 @@
       <% kablam_scope = "kablam_forms.#{@table_name}.#{field}" %>
       <% classyy = @model.prep_form_field[field] %>
       <% next if classyy == :exclude %>
-      <% input = {name: "#{@form_name}[#{field}]", value: obj.send(field), label: t(:label, scope: kablam_scope, default: ""), pretext: t(:pretext, scope: kablam_scope, default: ""), placeholder: t(:placeholder, scope: kablam_scope, default: ""), hint: raw(t(:hint, scope: kablam_scope, default: "")), choices: @model.choices(field, I18n.locale)} %>
+      <% input = @model.input(field) %>
       <%= (render "kablam_forms/fields/pretext", classes: classes, input: input) if input[:pretext].present? %>
       <%= render "kablam_forms/fields/#{classyy.to_s}", classes: classes, input: input, f: f %>
     <% end %>

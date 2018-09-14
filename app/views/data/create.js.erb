@@ -1,0 +1,10 @@
+var content = '<%= j render "data/models/#{@object.model_name.singular}", obj: @object %>'
+
+document
+  .getElementById('<%= params[:target] || "target_index" %>')
+  .insertAdjacentHTML('beforeend', content)
+
+document
+  .querySelector('[action$="/<%= params[:target] || "target_index" %>"]')
+  .reset()
+<%= render_flash message: 'Created' %>

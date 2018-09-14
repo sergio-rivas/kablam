@@ -11,6 +11,28 @@ module Kablam
           "updated_at").reject{|k,v|v.blank?}
     end
 
+    def self.slack_hook
+      nil
+    end
+
+    def self.input(field)
+      form_name = self.to_s.underscore
+      {
+        name: "#{form_name}[#{field}]",
+        value: obj.send(field),
+        label: t(:label, scope: magic_scope, default: ""),
+        pretext: t(:pretext, scope: magic_scope, default: ""),
+        placeholder: t(:placeholder, scope: magic_scope, default: ""),
+        hint: raw(t(:hint, scope: magic_scope, default: "")),
+        choices: @model.choices(field, I18n.locale)
+      }
+    end
+
+    def slack_message
+      puts "You have not setup slack message for this model.\nto prepare a slack_message, please add method 'slack_message'\nwith content of a hash with keys [:create, :update, :destroy].\n\nFor each key, prepare a value hash like this:\n  ...\n  create:  {\n   pretext: 'some text',\n   author: 'some name',\n   title: 'some title',\n   text: ''\n  },\n  ...\n\nHope this helps!!"
+      {create: {}, update: {}, destroy: {}}
+    end
+
     def identifier
       send(self.class.fields.first)
     end
