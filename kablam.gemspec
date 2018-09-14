@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'kablam'
-  s.version     = '0.0.0'
+  s.version     = '0.0.1'
   s.date        = '2018-09-14'
   s.summary     = "Empty Initialization of Gem"
   s.description = "Gem to make development of everything in rails even faster."
@@ -10,4 +10,6 @@ Gem::Specification.new do |s|
   s.homepage    =
     'http://rubygems.org/gems/kablam'
   s.license       = 'MIT'
+
+  s.add_dependency("activerecord")
 end
