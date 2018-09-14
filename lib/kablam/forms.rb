@@ -1,6 +1,6 @@
 module Kablam
   class Forms
-    def default_classes
+    def self.default_classes
       {
         form_wrapper: "pa4 black-80",
         submit_button: "relative no-underline mt3 f4 tc db w-75 pv3 mb3 bg-red hover-bg-green white br2 shadow-5 btn-3d bn outline-0",
