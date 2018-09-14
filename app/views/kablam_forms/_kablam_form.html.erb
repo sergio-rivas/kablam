@@ -1,0 +1,16 @@
+<%
+  # Please Override the Default Classes below with classes used in your theme!
+  default_classes = Kablam::Forms.default_classes
+  #
+  classes = classes || {}
+  classes = default_classes.merge classes.select { |k| default_classes.keys.include? k }
+  target = target || nil
+  hidden = hidden || {}
+  ajax_remove = ajax_remove || false
+ %>
+
+<%= render "kablam_forms/form_generator", classes: classes, obj: obj, target: target, hidden: hidden, ajax_remove: ajax_remove  %>
+
+
+
+

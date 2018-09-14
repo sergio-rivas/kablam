@@ -1,0 +1,26 @@
+<% require 'securerandom'
+  unique_id = SecureRandom.hex
+%>
+<%#
+  THIS TAKES A HASH for INPUT.
+  EX of FORMAT: input = {label: "choices", name: "assessment[choices]", value: ["value", "from", "existing", "DB_ENTRY"], id: "1" (if input_id is used)}
+ %>
+<div id="multi_input_<%= unique_id %>" class="<%= classes[:form_group] %>">
+  <label class="<%= classes[:field_label] %>"><%= input[:label] %></label>
+  <small class="<%= classes[:field_hint] %>"><%= input[:hint] %></small>
+  <a href="#!" class="<%= classes[:multi_add_button] %>" onclick='event.preventDefault();addInput("multi_input_<%= unique_id %>", "<%= input[:name] %>[]", { "input": "<%= classes[:input] %>", "btn": "<%= classes[:multi_remove_button] %>", "icon": "<%= classes[:multi_remove_icon] %>", "group": "<%= classes[:multi_input_group] %>"});'><i class="<%= classes[:multi_add_icon] %>"></i></a>
+  <% if input[:value].present? %>
+    <% input[:value].each_with_index do |val, i| %>
+    <div id="<%= unique_id %>_<%= i+1 %>" class="<%= classes[:multi_input_group] %>">
+      <input id="" class="<%= classes[:input] %>"  type="text" name="<%= input[:name] %>[]" value="<%= val %>">
+      <a href="#!" class="<%= classes[:multi_remove_button] %>" onclick='event.preventDefault();rmParent(this);'><i class="<%= classes[:multi_remove_icon] %>"></i></a>
+    </div>
+    <% end %>
+  <% else %>
+  <div id="<%= id = SecureRandom.hex %>" class="<%= classes[:multi_input_group] %>">
+    <input  class="<%= classes[:input] %>"  type="text" name="<%= input[:name] %>[]" placeholder="<%= input[:placeholder] %>">
+    <a href="#!" class="<%= classes[:multi_remove_button] %>" onclick='event.preventDefault();rmParent(this);'><i class="<%= classes[:multi_remove_icon] %>"></i></a>
+  </div>
+  <% end %>
+</div>
+

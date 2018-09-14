@@ -1,0 +1,29 @@
+<div class="<%= classes[:form_group] %>">
+  <fieldset id="<%= input[:id] %>" class="<%= classes[:checkbox_group_wrapper] %>">
+    <legend class="<%= classes[:field_label] %>"><%= input[:label] %></legend>
+    <small id="<%= input[:id] %>-desc" class="<%= classes[:field_hint] %>"><%= input[:hint] %></small>
+
+  <% input[:choices].each_with_index do |choice, i| %>
+    <div class="<%= classes[:checkbox_wrapper] %>">
+      <input id="<%= input[:id] %>_<%= i %>" name="<%= input[:name] %>[]" class="<%= classes[:checkbox] %>" <%= "checked" if input[:value].include?(choice[:value]) %> type="checkbox" value="<%= choice[:value] %>">
+      <label for="<%= input[:id] %>_<%= i %>" class="<%= classes[:checkbox_label] %>"><%= choice[:label] %></label>
+    </div>
+  <% end %>
+  </fieldset>
+</div>
+
+<%
+# STRUCTURE of Checkbox
+# <div FORM_GROUP >
+#   <fieldset CHECKBOX_GROUP_WRAPPER >
+#     <legend LABEL ></legend>
+#     <small HINT ></small>
+#     ------CHOICES START------
+#     <div>
+#       <input Checkbox>
+#       <label>checkbox choice text</label>
+#     </div>
+#     ------CHOICES END--------
+#   </fieldset>
+# </div>
+%>

@@ -1,0 +1,6 @@
+<div class="<%= classes[:form_group] %>">
+  <label for="<%= input[:name] %>" class="<%= classes[:field_label] %>"><%= input[:label] %></label>
+  <small id="<%= input[:name] %>-desc" class="<%= classes[:field_hint] %>"><%= input[:hint] %></small>
+  <input id="<%= input[:id] if input[:id].present? %>" name="<%= input[:name] %>" class="<%= classes[:input] %>" type="text" aria-describedby="<%= input[:name] %>-desc" value="<%= input[:value] %>" placeholder="<%= input[:placeholder] %>">
+</div>
+
