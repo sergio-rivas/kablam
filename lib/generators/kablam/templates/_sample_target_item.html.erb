@@ -1,0 +1,25 @@
+<!-- If rendering things to a table after form submission,
+  create a partial with the model name in this folder.
+  example: for User, create a file '_user.html.erb'
+  Then follow the following format:
+
+  note: THE ACTIVERECORD OBJECT muse be called 'obj' in your partial!
+  note: obj.html_id is a helper method included in Kablam.
+-->
+
+<tr id="<%= obj.html_id %>" class="some_tr_class_you_want">
+  <td class="some_td_class"><%= obj.some_column %></td>
+  <td class="some_td_class"><%= obj.another_column %></td>
+
+  <td class="some_td_class">
+    <%= raw Kablam::Forms.render_edit(obj, 'form_div_id', 'table_div_id') %>
+    <!-- Can also give params in a hash, {class: "class", text: "edit" } -->
+  </td>
+  <td class="">
+    <%= raw Kablam::Forms.render_destroy(obj) %>
+    <!-- Can also give params in a hash, {class: "class", text: "edit" } -->
+   </td>
+</tr>
+
+
+

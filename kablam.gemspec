@@ -1,9 +1,9 @@
 Gem::Specification.new do |s|
   s.name        = 'kablam'
-  s.version     = '0.0.8'
+  s.version     = '0.1.0'
   s.date        = '2018-09-14'
-  s.summary     = "Empty Initialization of Gem"
-  s.description = "Gem to make development of everything in rails even faster."
+  s.summary     = "Kablam! All the things you hate. But Faster."
+  s.description = "Gem to make development of everything in rails faster. Form creation & styling, all the resource routes, even actioncable messaging!"
   s.authors     = ["Sergio Rivas"]
   s.email       = 'sergiorivas@163.com'
   s.files       = `git ls-files`.split("\n")

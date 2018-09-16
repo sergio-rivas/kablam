@@ -1,7 +1,7 @@
 <% if params[:target].present? %>
 
 var objRow = byId('<%= @object.html_id %>')
-var content = `<%= j render "data/models/#{@object.model_name.singular}", obj: @object %>`
+var content = `<%= j render "kablam/models/#{@object.model_name.singular}", obj: @object %>`
 var newRow = HTMLElement.From(content);
 
 objRow.innerHTML = newRow.innerHTML

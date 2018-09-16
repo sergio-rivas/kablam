@@ -1,6 +1,6 @@
 require 'rest-client'
 
-class DataController < ApplicationController
+class KablamController < ApplicationController
   protect_from_forgery with: :exception
   before_action :set_model, only: [:create, :update, :undo, :destroy, :form]
   before_action :set_object, only: [:update, :destroy]

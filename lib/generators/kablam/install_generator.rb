@@ -13,14 +13,19 @@ module Kablam
 
       # Setup Initializer
       template "kablam.rb", "config/initializers/kablam.rb"
+      template "_sample_target_item.html.erb", "app/views/kablam/models/_sample_target_item.html.erb"
 
       def setup_routes
-        route "# form/create/update/destroy/undo for all models"
-        route "get    'd/:name/form' => 'data#form',     as: 'data_form'"
-        route "post   'd/:name'      => 'data#create',   as: 'data_create'"
-        route "patch  'd/:name/:id'  => 'data#update',   as: 'data_update'"
-        route "delete 'd/:name/:id'  => 'data#destroy',  as: 'data_destroy'"
-        route "put    'd/:name/:id'  => 'data#undo',     as: 'data_undo'"
+        route "# KABLAM! form/create/update/destroy/undo for all models"
+        route "# Note: Make sure Kablam engine is at the BOTTOM of routes"
+        route "# helpers to use KABLAM! [examples w/ 'posts' model)"
+        route "# --->  kablam.form_path('posts')"
+        route "#  (if edit form, must add '?id=\#\{@post.id\}' at end of path)"
+        route "# --->  kablam.create_path('posts')"
+        route "# --->  kablam.delete_path('posts', @post)"
+        route "# --->  kablam.update_path('posts', @post)"
+        route "# --->  kablam.undo_path('posts', @post)"
+        route "mount Kablam::Engine => '/kablam', as: 'kablam'"
       end
 
       def setup_assets
