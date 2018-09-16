@@ -1,7 +1,7 @@
 
 <div class="<%= classes[:form_group] %>">
-  <label class="<%= classes[:field_label] %>" for="<%= input[:id] %>"><%= input[:label] %></label>
-  <small id="<%= input[:name] %>-desc" class="<%= classes[:field_hint] %>"><%= input[:hint] %></small>
+  <label class="<%= classes[:field_label] %>" for="<%= input[:id] %>"><%= raw input[:label] %></label>
+  <small id="<%= input[:name] %>-desc" class="<%= classes[:field_hint] %>"><%= raw input[:hint] %></small>
   <div class="kablam_fileinput_init">
     <input class="kablam_file <%= classes[:file_upload] %>" name="<%= input[:name] %>" type="file" id="<%= input[:id] %>">
   </div>

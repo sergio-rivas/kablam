@@ -6,8 +6,8 @@
   EX of FORMAT: input = {label: "choices", name: "assessment[choices]", value: ["value", "from", "existing", "DB_ENTRY"], id: "1" (if input_id is used)}
  %>
 <div id="multi_input_<%= unique_id %>" class="<%= classes[:form_group] %>">
-  <label class="<%= classes[:field_label] %>"><%= input[:label] %></label>
-  <small class="<%= classes[:field_hint] %>"><%= input[:hint] %></small>
+  <label class="<%= classes[:field_label] %>"><%= raw input[:label] %></label>
+  <small class="<%= classes[:field_hint] %>"><%= raw input[:hint] %></small>
   <a href="#!" class="<%= classes[:multi_add_button] %>" onclick='event.preventDefault();addInput("multi_input_<%= unique_id %>", "<%= input[:name] %>[]", { "input": "<%= classes[:input] %>", "btn": "<%= classes[:multi_remove_button] %>", "icon": "<%= classes[:multi_remove_icon] %>", "group": "<%= classes[:multi_input_group] %>"});'><i class="<%= classes[:multi_add_icon] %>"></i></a>
   <% if input[:value].present? %>
     <% input[:value].each_with_index do |val, i| %>

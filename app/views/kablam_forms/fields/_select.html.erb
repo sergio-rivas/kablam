@@ -1,8 +1,8 @@
 <div class="<%= classes[:form_group] %>">
-  <label for="<%= input[:id] %>" class="<%= classes[:field_label] %>"><%= input[:label] %></label>
-  <small id="select_<%= input[:id] %>-desc" class="<%= classes[:field_hint] %>"><%= input[:hint] %></small>
+  <label for="<%= input[:id] %>" class="<%= classes[:field_label] %>"><%= raw input[:label] %></label>
+  <small id="select_<%= input[:id] %>-desc" class="<%= classes[:field_hint] %>"><%= raw input[:hint] %></small>
   <select id="<%= input[:id] if input[:id].present? %>" class="select_basic <%= classes[:select] %>" name="<%= input[:name] %>" aria-describedby="select_<%= input[:id] %>-desc">
-    <option value=""><%= input[:placeholder] %></option>
+    <option value=""><%= raw input[:placeholder] %></option>
     <% input[:choices].each do |choice| %>
       <option label="<%= choice[:label] %>" value="<%= choice[:value] %>"<%= input[:value].present? ? (" selected=\"selected\"" if input[:value] == choice[:value] ) : "" %>></option>
     <% end %>

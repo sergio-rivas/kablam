@@ -1,10 +1,10 @@
 <div class="<%= classes[:form_group] %>">
   <fieldset id="<%= input[:id] %>" class="<%= classes[:checkbox_group_wrapper] %>">
-    <legend class="<%= classes[:field_label] %>"><%= input[:label] %></legend>
-    <small id="<%= input[:id] %>-desc" class="<%= classes[:field_hint] %>"><%= input[:hint] %></small>
+    <legend class="<%= classes[:field_label] %>"><%= raw input[:label] %></legend>
+    <small id="<%= input[:id] %>-desc" class="<%= classes[:field_hint] %>"><%= raw input[:hint] %></small>
     <div class="<%= classes[:checkbox_wrapper] %>">
       <input id="<%= input[:id] %>" name="<%= input[:name] %>" class="<%= classes[:checkbox] %>" <%= "checked" if input[:value].present? %> type="checkbox">
-      <label for="<%= input[:id] %>" class="<%= classes[:checkbox_label] %>"><%= input[:choices].first[:label] %></label>
+      <label for="<%= input[:id] %>" class="<%= classes[:checkbox_label] %>"><%= raw input[:choices].first[:label] %></label>
     </div>
   </fieldset>
 </div>

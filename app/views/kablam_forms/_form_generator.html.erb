@@ -21,7 +21,7 @@
       <% kablam_scope = "kablam_forms.#{@table_name}.#{field}" %>
       <% classyy = @model.prep_form_field[field] %>
       <% next if classyy == :exclude %>
-      <% input = @model.input(field) %>
+      <% input = obj.input(field) %>
       <%= (render "kablam_forms/fields/pretext", classes: classes, input: input) if input[:pretext].present? %>
       <%= render "kablam_forms/fields/#{classyy.to_s}", classes: classes, input: input, f: f %>
     <% end %>

@@ -1,7 +1,10 @@
+rails generate kablam:install
+  ---> This sets up all the basic kablam backend dependencies for auto-forms
+
 rails generate kablam:forms LOCALE
 
-  ---> This will generate a template file for use with i18n at '/config/locales/kablam-forms.<LOCALE>.yml'
+  ---> This will generate an empty template file for use with i18n at '/config/locales/kablam-forms.<LOCALE>.yml'
 
-rails generate kablam:form_views
+rails generate kablam:form_views (Not Available Yet)
 
   ---> This will generate all the form-components used with kablam_forms. You can change them to fit any HTML based template you have!

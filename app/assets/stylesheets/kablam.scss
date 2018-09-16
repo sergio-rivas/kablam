@@ -1,0 +1,25 @@
+div.kablam_fileinputs {
+  position: relative;
+}
+
+div.kablam_fakefile {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
+input.kablam_file {
+  position: relative;
+  text-align: right;
+  -moz-opacity:0 ;
+  filter: opacity(0);
+  opacity: 0;
+  z-index: 2;
+}
+.hidden {
+  display: none;
+}
