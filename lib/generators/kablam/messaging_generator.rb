@@ -1,15 +1,11 @@
 # frozen_string_literal: true
 
-require 'rails/generators/named_base'
-
+require 'rails/generators/base'
 module Kablam
   module Generators
-    class MessagingGenerator < Rails::Generators::NamedBase
-      include Rails::Generators::ResourceHelpers
+    class MessagingGenerator < Rails::Generators::Base
       namespace "kablam:messaging"
       source_root File.expand_path('../templates', __FILE__)
-      # argument :name, :type => :string, :default => "en"
-
 
       def setup_action_cable
         inject_into_file 'app/assets/javascripts/application.js', after: "//=require_tree .\n" do

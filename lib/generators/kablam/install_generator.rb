@@ -7,14 +7,14 @@ module Kablam
       namespace "kablam:install"
       source_root File.expand_path('../templates', __FILE__)
       # argument :name, :type => :string, :default => "en"
+      def basic_setup
+        # Change ApplicationRecord's inheritence
+        gsub_file 'app/models/application_record.rb', 'class ApplicationRecord < ActiveRecord::Base', 'class ApplicationRecord < Kablam::KablamRecord'
 
-      # Change ApplicationRecord's inheritence
-      gsub_file 'app/models/application_record.rb', 'class ApplicationRecord < ActiveRecord::Base', 'class ApplicationRecord < Kablam::KablamRecord'
-
-      # Setup Initializer
-      template "kablam.rb", "config/initializers/kablam.rb"
-      template "_sample_target_item.html.erb", "app/views/kablam/models/_sample_target_item.html.erb"
-
+        # Setup Initializer
+        template "kablam.rb", "config/initializers/kablam.rb"
+        template "_sample_target_item.html.erb", "app/views/kablam/models/_sample_target_item.html.erb"
+      end
       def setup_routes
         route "# KABLAM! form/create/update/destroy/undo for all models"
         route "# Note: Make sure Kablam engine is at the BOTTOM of routes"
@@ -35,8 +35,6 @@ module Kablam
         end
         prepend_file 'app/assets/stylesheets/application.css.scss', "@import 'kablam';"
       end
-
-      readme "README"
     end
   end
 end
