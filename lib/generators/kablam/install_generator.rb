@@ -16,7 +16,7 @@ module Kablam
       end
       def setup_routes
         inject_into_file 'config/routes.rb', before: "end" do
-          "  # KABLAM! form/create/update/destroy/undo for all models\n  # Note: Make sure Kablam engine is at the BOTTOM of routes\n  # helpers to use KABLAM! [examples w/ 'posts' model)\n  # --->  kablam.form_path('posts')\n  #  (if edit form, must add '?id=\#\{@post.id\}' at end of path)\n  # --->  kablam.create_path('posts')\n  # --->  kablam.delete_path('posts', @post)\n  # --->  kablam.update_path('posts', @post)\n  # --->  kablam.undo_path('posts', @post)\n  mount Kablam::Engine => '/kablam', as: 'kablam'\n"
+          "  # KABLAM! form/create/update/destroy/undo for all models\n  # Note: Make sure Kablam engine is at the BOTTOM of routes\n  # helpers to use KABLAM! [examples w/ 'posts' model)\n  # --->  kablam.form_path('posts')\n  #  (if edit form, must add '?id=\#\{@post.id\}' to path)\n  # --->  kablam.create_path('posts')\n  # --->  kablam.delete_path('posts', @post)\n  # --->  kablam.update_path('posts', @post)\n  # --->  kablam.undo_path('posts', @post)\n  mount Kablam::Engine => '/kablam', as: 'kablam'\n"
         end
 
       end

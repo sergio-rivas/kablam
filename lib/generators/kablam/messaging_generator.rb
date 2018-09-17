@@ -31,7 +31,7 @@ module Kablam
       end
       def setup_assets
         inject_into_file 'app/assets/javascripts/application.js', before: "//= require_tree ." do
-          "//= require kablam/messaging"
+          "//= require kablam/messaging\n"
         end
       end
     end
