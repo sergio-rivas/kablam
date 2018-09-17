@@ -12,27 +12,30 @@ module Kablam
 
         # Setup Initializer
         template "kablam.rb", "config/initializers/kablam.rb"
-        template "_sample_target_item.html.erb", "app/views/kablam/models/_sample_target_item.html.erb"
+        copy_file "_sample_target_item.html.erb", "app/views/kablam/models/_sample_target_item.html.erb"
       end
       def setup_routes
-        route "# KABLAM! form/create/update/destroy/undo for all models"
-        route "# Note: Make sure Kablam engine is at the BOTTOM of routes"
-        route "# helpers to use KABLAM! [examples w/ 'posts' model)"
-        route "# --->  kablam.form_path('posts')"
-        route "#  (if edit form, must add '?id=\#\{@post.id\}' at end of path)"
-        route "# --->  kablam.create_path('posts')"
-        route "# --->  kablam.delete_path('posts', @post)"
-        route "# --->  kablam.update_path('posts', @post)"
-        route "# --->  kablam.undo_path('posts', @post)"
-        route "mount Kablam::Engine => '/kablam', as: 'kablam'"
+        inject_into_file 'config/routes.rb', before: "end" do
+          "  # KABLAM! form/create/update/destroy/undo for all models"
+          "  # Note: Make sure Kablam engine is at the BOTTOM of routes"
+          "  # helpers to use KABLAM! [examples w/ 'posts' model)"
+          "  # --->  kablam.form_path('posts')"
+          "  #  (if edit form, must add '?id=\#\{@post.id\}' at end of path)"
+          "  # --->  kablam.create_path('posts')"
+          "  # --->  kablam.delete_path('posts', @post)"
+          "  # --->  kablam.update_path('posts', @post)"
+          "  # --->  kablam.undo_path('posts', @post)"
+          "  mount Kablam::Engine => '/kablam', as: 'kablam'\n"
+        end
+
       end
 
       def setup_assets
-        inject_into_file 'app/assets/javascripts/application.js', before: "//=require_tree ." do
+        inject_into_file 'app/assets/javascripts/application.js', before: "//= require_tree ." do
           "//=require kablam/ajax"
           "//=require kablam/forms\n"
         end
-        prepend_file 'app/assets/stylesheets/application.css.scss', "@import 'kablam';"
+        prepend_file 'app/assets/stylesheets/application.css.scss', "@import 'kablam';\n"
       end
     end
   end

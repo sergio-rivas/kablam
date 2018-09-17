@@ -10,7 +10,9 @@ module Kablam
         inject_into_file 'app/assets/javascripts/application.js', after: "//=require_tree .\n" do
           "//=require cable"
         end
-        route "mount ActionCable.server => '/cable'"
+        inject_into_file 'config/routes.rb', before: 'end' do
+          "  mount ActionCable.server => '/cable'\n"
+        end
         inject_into_file "app/views/layouts/application.html.erb", before: "</head>" do
           "  <%= action_cable_meta_tag %>\n  "
         end
