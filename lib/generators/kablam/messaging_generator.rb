@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'rails/generators/base'
 module Kablam
   module Generators
     class MessagingGenerator < Rails::Generators::Base
