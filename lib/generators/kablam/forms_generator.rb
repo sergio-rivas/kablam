@@ -1,5 +1,7 @@
-require 'yaml'
+# frozen_string_literal: true
 
+require 'yaml'
+require 'rails/generators/named_base'
 module Kablam
   module Generators
     class FormsGenerator < Rails::Generators::NamedBase

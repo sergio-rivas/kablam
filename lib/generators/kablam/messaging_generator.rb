@@ -1,4 +1,6 @@
-require 'yaml'
+# frozen_string_literal: true
+
+require 'rails/generators/named_base'
 
 module Kablam
   module Generators

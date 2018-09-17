@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module KablamForms
   module Generators
     class ViewsGenerator < Rails::Generators::Base
