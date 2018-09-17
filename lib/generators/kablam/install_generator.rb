@@ -2,8 +2,7 @@ require 'yaml'
 
 module Kablam
   module Generators
-    class InstallGenerator < Rails::Generators::NamedBase
-      include Rails::Generators::ResourceHelpers
+    class InstallGenerator < Rails::Generators::Base
       namespace "kablam:install"
       source_root File.expand_path('../templates', __FILE__)
       # argument :name, :type => :string, :default => "en"
