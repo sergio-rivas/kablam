@@ -7,8 +7,8 @@ module Kablam
       source_root File.expand_path('../templates', __FILE__)
 
       def setup_action_cable
-        inject_into_file 'app/assets/javascripts/application.js', after: "//=require_tree .\n" do
-          "//=require cable"
+        inject_into_file 'app/assets/javascripts/application.js', after: "//= require_tree ." do
+          "\n//= require cable"
         end
         inject_into_file 'config/routes.rb', before: 'end' do
           "  mount ActionCable.server => '/cable'\n"
@@ -30,8 +30,8 @@ module Kablam
         rake "db:migrate"
       end
       def setup_assets
-        inject_into_file 'app/assets/javascripts/application.js', before: "//=require_tree .\n" do
-          "//=require kablam/messaging"
+        inject_into_file 'app/assets/javascripts/application.js', before: "//= require_tree ." do
+          "//= require kablam/messaging"
         end
       end
     end

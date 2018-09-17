@@ -1,6 +1,3 @@
-var scrollPosition;
-document.addEventListener('turbolinks:load', refreshScroll());
-
 function refreshScroll(){
   if (scrollPosition) {
     window.scrollTo.apply(window, scrollPosition);
@@ -93,3 +90,6 @@ function HtmlNode(data, options={}){
     <div class="${options.messageDivClass}"><p class="${options.messageClass}">${content}</p></div>`;
     chatdiv.insertAdjacentElement('afterbegin', new_message);
 }
+
+var scrollPosition;
+document.addEventListener('turbolinks:load', refreshScroll());
