@@ -1,4 +1,4 @@
-var content = '<%= j render "kablam/models/#{@object.model_name.singular}", obj: @object %>'
+var content = `<%= j render "kablam/models/#{@object.model_name.singular}", obj: @object %>`
 
 document
   .getElementById('<%= params[:target] || "target_index" %>')

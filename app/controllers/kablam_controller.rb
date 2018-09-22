@@ -1,10 +1,12 @@
 require 'rest-client'
+require 'json'
 
 class KablamController < ApplicationController
   protect_from_forgery with: :exception
   before_action :set_model, only: [:create, :update, :undo, :destroy, :form]
   before_action :set_object, only: [:update, :destroy]
   before_action :set_undo_object, only: [:undo]
+  skip_before_action :verify_authenticity_token, only: [:message]
   include Concerns::ApiSettings
 
   def form
@@ -19,7 +21,7 @@ class KablamController < ApplicationController
   end
 
   def message
-    @message = params[:message]
+    @message = JSON.parse(params[:message])
     respond_to do |format|
       format.js
       format.html do

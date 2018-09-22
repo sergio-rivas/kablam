@@ -42,4 +42,9 @@ Kablam.setup do |config|
   config.multi_remove_button =  "relative no-underline bg-red hover-bg-green white pa2 pl3 pr3 ml1 btn-3d br2"
   config.multi_add_icon =  "fa fa-plus"
   config.multi_remove_icon =  "fa fa-trash"
+
+  # ============================================================
+  #                     KABLAM MESSAGING
+  # ============================================================
+  config.message_location = "start" # Accepted values are "start" and "end"
 end

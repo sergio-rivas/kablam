@@ -28,6 +28,9 @@ module Kablam
   mattr_accessor :multi_add_icon
   mattr_accessor :multi_remove_icon
 
+  # Message settings
+  mattr_accessor :message_location
+
   module ClassMethods
 
   end

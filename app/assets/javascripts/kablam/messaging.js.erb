@@ -63,48 +63,15 @@ function UserChatSub(chat_div_id, chat_id, channel, user_id, options={}){
 }
 
 function RenderMessage(data) {
+  console.log(data);
   AjaxRequest.post(
     {
-      'url': '<%= message_path %>',
-      'parameters': {'message': data},
+      'url': '<%= Kablam::Engine.routes.url_helpers.message_path %>',
+      'parameters': {'message': JSON.stringify(data['chat'])},
       // 'onSuccess':function(req){ insertAndExecute(target, req.responseText); }
-      // 'onSuccess': console.log("GOT POST!")
+      'onSuccess': function(req){eval(req.responseText);}
     }
   );
-}
-
-function insertHTML(target, content, location) {
-
-}
-
-function HtmlNode(target, data, options={}){
-  options = {
-    outerDivClass: options.outerDivClass || "pt3 ph3 ph2-l bg-white br2 shadow1 mb3",
-    innerDivClass: options.innerDivClass || "dt w-100 pb2 ph2 mt2",
-    imgDivClass: options.imgDivClass || "dtc w2 w3-ns v-mid",
-    imgClass: options.imgClass || "ba b--black-10 db br-100 w2 w3-ns h2 h3-ns",
-    userDivClass: options.userDivClass || "dtc v-mid pl3",
-    userNameClass: options.userNameClass || "f6 f5-ns fw6 lh-title black mv0",
-    timestampClass: options.timestampClass || "f6 fw4 mt0 mb0 black-60 i",
-    messageDivClass: options.messageDivClass || "ph3-l pb2",
-    messageClass: options.messageClass || "f5 lh-copy measure pb3"
-  }
-
-  var new_message = document.createElement("div");
-
-    new_message.className = options.outerDivClass;
-    var content = data['chat'].content.replace(/(?:\r\n|\r|\n)/g, '<br>');
-    new_message.innerHTML = `<div class="${options.innerDivClass}">
-    <div class="${options.imgDivClass}">
-    <img src="${data['chat'].image}" class="${options.imgClass}"/>
-    </div>
-    <div class="${options.userDivClass}">
-      <h1 class="${options.userNameClass}">${data['chat'].username}</h1>
-      <h2 class="${options.timestampClass}">${data['chat'].created_at}</h2>
-    </div>
-    </div>
-    <div class="${options.messageDivClass}"><p class="${options.messageClass}">${content}</p></div>`;
-    target.insertAdjacentElement('afterbegin', new_message);
 }
 
 var scrollPosition;
