@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name        = 'kablam'
-  s.version     = '0.2.6'
-  s.date        = '2018-09-14'
+  s.version     = '0.2.8'
+  s.date        = Time.now.strftime("%Y-%m-%d")
   s.summary     = "Kablam! All the things you hate. But Faster."
   s.description = "Gem to make development of everything in rails faster. Form creation & styling, all the resource routes, even actioncable messaging!\n {NOTE: In Development. NOT READY FOR TESTING.}"
   s.authors     = ["Sergio Rivas"]

@@ -1,3 +1,4 @@
+<% if params[:target].present? %>
 var content = `<%= j render "kablam/models/#{@object.model_name.singular}", obj: @object %>`
 
 document
@@ -7,4 +8,5 @@ document
 document
   .querySelector('[action$="/<%= params[:target] || "target_index" %>"]')
   .reset()
+<% end %>
 <%= render_flash message: 'Created' %>

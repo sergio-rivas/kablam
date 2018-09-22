@@ -15,6 +15,7 @@
     <% if hidden.present? %>
       <% hidden.each do |k,v| %>
         <input type="hidden" name="<%= k.to_s %>" value="<%= v %>">
+        }
       <% end %>
     <% end %>
     <% @model.fields.each do |field| %>

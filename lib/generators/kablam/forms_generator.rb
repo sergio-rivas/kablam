@@ -75,9 +75,11 @@ module Kablam
 
       def gen_yaml(db_index)
         path = "config/locales/kablam-forms.#{name}.yml"
-        original = YAML.load_file(path)
         yml_hash = {name => {"kablam_forms" => db_to_hash(db_index)}}
-        yml_hash.merge!(original) if original.present?
+        if File.exist?(Rails.root.to_s + "/"+ path)
+          original = YAML.load_file(path)
+          yml_hash.merge!(original) if original.present?
+        end
 
         File.write(path, yml_hash.to_yaml)
         dump_yaml_with_double_quotes(path)

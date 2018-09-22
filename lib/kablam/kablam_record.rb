@@ -1,5 +1,5 @@
 module Kablam
-  class Kablam::KablamRecord < ActiveRecord::Base
+  class KablamRecord < ActiveRecord::Base
     self.abstract_class = true
 
     def html_id

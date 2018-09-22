@@ -54,3 +54,4 @@ end
 require 'kablam/engine'
 require 'kablam/forms'
 require 'kablam/kablam_record'
+require 'kablam/kablam_helper'
