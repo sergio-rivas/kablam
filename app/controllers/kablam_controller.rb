@@ -18,6 +18,16 @@ class KablamController < ApplicationController
     render layout: false
   end
 
+  def message
+    @message = params[:message]
+    respond_to do |format|
+      format.js
+      format.html do
+        redirect_to request.referrer
+      end
+    end
+  end
+
   def create
     @object = @model.new(model_params)
 

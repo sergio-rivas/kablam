@@ -1,0 +1,15 @@
+<div class="pt3 ph3 ph2-l bg-white br2 shadow1 mb3">
+  <div class="dt w-100 pb2 ph2 mt2">
+    <div class="dtc w2 w3-ns v-mid">
+      <img src="<%= message['image'].blank? ? image_path('rocket2.png') : message['image'] %>" class="ba b--black-10 db br-100 w2 w3-ns h2 h3-ns"/>
+    </div>
+    <div class="dtc v-mid pl3">
+      <h1 class="f6 f5-ns fw6 lh-title black mv0"><%= message['username'] %></h1>
+      <h2 class="f6 fw4 mt0 mb0 black-60 i"><%= message['created_at'].to_time.strftime("%H:%M:%S%p %m-%d-%Y") %></h2>
+      <h2 class="f6 fw4 mt0 mb0 black-60 i">User Time:<%= message['user_time'].to_time.strftime("%H:%M:%S%p %m-%d-%Y") if message['user_time'].present? %></h2>
+    </div>
+  </div>
+  <div class="ph3-l pb2 ">
+   <%= simple_format(message['content']) %>
+  </div>
+</div>

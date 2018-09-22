@@ -1,7 +1,7 @@
 <%= hide @object %>
 <% if @object.undoable? %>
 <%= render_flash message: 'Deleted', partial: 'application/flash_undo',
-  link: button_to('Undo', kablam_undo_path(@object.class.table_name, @object,
+  link: button_to('Undo', undo_path(@object.class.table_name, @object,
     @object.model_name.singular.to_sym => { destroyed_at: nil }),
   {data: { disable_with: 'Restoring…' },
   class: 'no-underline mt3 f4 tc pv2 ph4 white bg-black hover-bg-green shadow-5',

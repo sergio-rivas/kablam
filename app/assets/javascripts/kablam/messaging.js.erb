@@ -53,7 +53,8 @@ function UserChatSub(chat_div_id, chat_id, channel, user_id, options={}){
 
   App.cable.subscriptions.create({ channel: channel, id: chat_id }, {
     received: function(data) {
-      HtmlNode(data, options);
+      // HtmlNode(data, options);
+      RenderMessage(data);
       if (data['chat']['sender_id'] != user_id) {
         TopDot();
       }
@@ -61,7 +62,22 @@ function UserChatSub(chat_div_id, chat_id, channel, user_id, options={}){
   })
 }
 
-function HtmlNode(data, options={}){
+function RenderMessage(data) {
+  AjaxRequest.post(
+    {
+      'url': '<%= message_path %>',
+      'parameters': {'message': data},
+      // 'onSuccess':function(req){ insertAndExecute(target, req.responseText); }
+      // 'onSuccess': console.log("GOT POST!")
+    }
+  );
+}
+
+function insertHTML(target, content, location) {
+
+}
+
+function HtmlNode(target, data, options={}){
   options = {
     outerDivClass: options.outerDivClass || "pt3 ph3 ph2-l bg-white br2 shadow1 mb3",
     innerDivClass: options.innerDivClass || "dt w-100 pb2 ph2 mt2",
@@ -88,7 +104,7 @@ function HtmlNode(data, options={}){
     </div>
     </div>
     <div class="${options.messageDivClass}"><p class="${options.messageClass}">${content}</p></div>`;
-    chatdiv.insertAdjacentElement('afterbegin', new_message);
+    target.insertAdjacentElement('afterbegin', new_message);
 }
 
 var scrollPosition;

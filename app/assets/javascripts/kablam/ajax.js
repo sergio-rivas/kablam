@@ -6,164 +6,38 @@ function AjaxRequest() {
   // Instance properties
   // -------------------
 
-  /**
-   * Timeout period (in ms) until an async request will be aborted, and
-   * the onTimeout function will be called
-   */
   req.timeout = null;
-
-  /**
-   *  Since some browsers cache GET requests via XMLHttpRequest, an
-   * additional parameter called AjaxRequestUniqueId will be added to
-   * the request URI with a unique numeric value appended so that the requested
-   * URL will not be cached.
-   */
   req.generateUniqueUrl = true;
-
-  /**
-   * The url that the request will be made to, which defaults to the current
-   * url of the window
-   */
   req.url = window.location.href;
-
-  /**
-   * The method of the request, either GET (default), POST, or HEAD
-   */
   req.method = "GET";
-
-  /**
-   * Whether or not the request will be asynchronous. In general, synchronous
-   * requests should not be used so this should rarely be changed from true
-   */
   req.async = true;
-
-  /**
-   * The username used to access the URL
-   */
   req.username = null;
-
-  /**
-   * The password used to access the URL
-   */
   req.password = null;
-
-  /**
-   * The parameters is an object holding name/value pairs which will be
-   * added to the url for a GET request or the request content for a POST request
-   */
   req.parameters = new Object();
-
-  /**
-   * The sequential index number of this request, updated internally
-   */
   req.requestIndex = AjaxRequest.numAjaxRequests++;
-
-  /**
-   * Indicates whether a response has been received yet from the server
-   */
   req.responseReceived = false;
-
-  /**
-   * The name of the group that this request belongs to, for activity
-   * monitoring purposes
-   */
   req.groupName = null;
-
-  /**
-   * The query string to be added to the end of a GET request, in proper
-   * URIEncoded format
-   */
   req.queryString = "";
-
-  /**
-   * After a response has been received, this will hold the text contents of
-   * the response - even in case of error
-   */
   req.responseText = null;
-
-  /**
-   * After a response has been received, this will hold the XML content
-   */
   req.responseXML = null;
-
-  /**
-   * After a response has been received, this will hold the status code of
-   * the response as returned by the server.
-   */
   req.status = null;
-
-  /**
-   * After a response has been received, this will hold the text description
-   * of the response code
-   */
   req.statusText = null;
-
-  /**
-   * An internal flag to indicate whether the request has been aborted
-   */
   req.aborted = false;
-
-  /**
-   * The XMLHttpRequest object used internally
-   */
   req.xmlHttpRequest = null;
 
   // --------------
   // Event handlers
   // --------------
 
-  /**
-   * If a timeout period is set, and it is reached before a response is
-   * received, a function reference assigned to onTimeout will be called
-   */
   req.onTimeout = null;
-
-  /**
-   * A function reference assigned will be called when readyState=1
-   */
   req.onLoading = null;
-
-  /**
-   * A function reference assigned will be called when readyState=2
-   */
   req.onLoaded = null;
-
-  /**
-   * A function reference assigned will be called when readyState=3
-   */
   req.onInteractive = null;
-
-  /**
-   * A function reference assigned will be called when readyState=4
-   */
   req.onComplete = null;
-
-  /**
-   * A function reference assigned will be called after onComplete, if
-   * the statusCode=200
-   */
   req.onSuccess = null;
-
-  /**
-   * A function reference assigned will be called after onComplete, if
-   * the statusCode != 200
-   */
   req.onError = null;
-
-  /**
-   * If this request has a group name, this function reference will be called
-   * and passed the group name if this is the first request in the group to
-   * become active
-   */
   req.onGroupBegin = null;
-
-  /**
-   * If this request has a group name, and this request is the last request
-   * in the group to complete, this function reference will be called
-   */
   req.onGroupEnd = null;
-
-  // Get the XMLHttpRequest object itself
   req.xmlHttpRequest = AjaxRequest.getXmlHttpRequest();
   if (req.xmlHttpRequest==null) { return null; }
 
@@ -182,9 +56,6 @@ function AjaxRequest() {
   // ---------------------------------------------------------------------------
   // Internal event handlers that fire, and in turn fire the user event handlers
   // ---------------------------------------------------------------------------
-  // Flags to keep track if each event has been handled, in case of
-  // multiple calls (some browsers may call the onreadystatechange
-  // multiple times for the same state)
   req.onLoadingInternalHandled = false;
   req.onLoadedInternalHandled = false;
   req.onInteractiveInternalHandled = false;
@@ -287,12 +158,6 @@ function AjaxRequest() {
   // ----------------
   // Instance methods
   // ----------------
-  /**
-   * The process method is called to actually make the request. It builds the
-   * querystring for GET requests (the content for POST requests), sets the
-   * appropriate headers if necessary, and calls the
-   * XMLHttpRequest.send() method
-  */
   req.process =
     function() {
       if (req.xmlHttpRequest!=null) {
@@ -323,11 +188,6 @@ function AjaxRequest() {
         req.xmlHttpRequest.send(content);
       }
     };
-
-  /**
-   * An internal function to handle an Object argument, which may contain
-   * either AjaxRequest field values or parameter name/values
-   */
   req.handleArguments =
     function(args) {
       for (var i in args) {
@@ -340,11 +200,6 @@ function AjaxRequest() {
         }
       }
     };
-
-  /**
-   * Returns the results of XMLHttpRequest.getAllResponseHeaders().
-   * Only available after a response has been returned
-   */
   req.getAllResponseHeaders =
     function() {
       if (req.xmlHttpRequest!=null) {
@@ -354,12 +209,6 @@ function AjaxRequest() {
         alert("Cannot getAllResponseHeaders because a response has not yet been received");
       }
     };
-
-  /**
-   * Returns the the value of a response header as returned by
-   * XMLHttpRequest,getResponseHeader().
-   * Only available after a response has been returned
-   */
   req.getResponseHeader =
     function(headerName) {
       if (req.xmlHttpRequest!=null) {
@@ -377,10 +226,6 @@ function AjaxRequest() {
 // Static methods of the AjaxRequest class
 // ---------------------------------------
 
-/**
- * Returns an XMLHttpRequest object, either as a core object or an ActiveX
- * implementation. If an object cannot be instantiated, it will return null;
- */
 AjaxRequest.getXmlHttpRequest = function() {
   if (window.XMLHttpRequest) {
     return new XMLHttpRequest();
@@ -405,36 +250,18 @@ AjaxRequest.getXmlHttpRequest = function() {
   }
 };
 
-/**
- * See if any request is active in the background
- */
 AjaxRequest.isActive = function() {
   return (AjaxRequest.numActiveAjaxRequests>0);
 };
 
-/**
- * Make a GET request. Pass an object containing parameters and arguments as
- * the second argument.
- * These areguments may be either AjaxRequest properties to set on the request
- * object or name/values to set in the request querystring.
- */
 AjaxRequest.get = function(args) {
   AjaxRequest.doRequest("GET",args);
 };
 
-/**
- * Make a POST request. Pass an object containing parameters and arguments as
- * the second argument.
- * These areguments may be either AjaxRequest properties to set on the request
- * object or name/values to set in the request querystring.
- */
 AjaxRequest.post = function(args) {
   AjaxRequest.doRequest("POST",args);
 };
 
-/**
- * The internal method used by the .get() and .post() methods
- */
 AjaxRequest.doRequest = function(method,args) {
   if (typeof(args)!="undefined" && args!=null) {
     var myRequest = new AjaxRequest();
@@ -444,13 +271,6 @@ AjaxRequest.doRequest = function(method,args) {
   }
 }  ;
 
-/**
- * Submit a form. The requested URL will be the form's ACTION, and the request
- * method will be the form's METHOD.
- * Returns true if the submittal was handled successfully, else false so it
- * can easily be used with an onSubmit event for a form, and fallback to
- * submitting the form normally.
- */
 AjaxRequest.submit = function(theform, args) {
   var myRequest = new AjaxRequest();
   if (myRequest==null) { return false; }
@@ -463,13 +283,6 @@ AjaxRequest.submit = function(theform, args) {
   return true;
 };
 
-/**
- * Serialize a form into a format which can be sent as a GET string or a POST
- * content.It correctly ignores disabled fields, maintains order of the fields
- * as in the elements[] array. The 'file' input type is not supported, as
- * its content is not available to javascript. This method is used internally
- * by the submit class method.
- */
 AjaxRequest.serializeForm = function(theform) {
   var els = theform.elements;
   var len = els.length;
@@ -515,17 +328,6 @@ AjaxRequest.serializeForm = function(theform) {
 // Static Class variables
 // -----------------------
 
-/**
- * The number of total AjaxRequest objects currently active and running
- */
 AjaxRequest.numActiveAjaxRequests = 0;
-
-/**
- * An object holding the number of active requests for each group
- */
 AjaxRequest.numActiveAjaxGroupRequests = new Object();
-
-/**
- * The total number of AjaxRequest objects instantiated
- */
 AjaxRequest.numAjaxRequests = 0;
