@@ -1,5 +1,5 @@
 module Kablam
-  class KablamHelper
+  module KablamHelper
     def replace_with(id, content)
     end
 
