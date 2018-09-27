@@ -5,7 +5,7 @@
   @method = (obj.id.blank? ? :post : :patch)
   @form_name = @model.to_s.underscore
   @form_id = "#{obj.id.blank? ? "new" : "update"}_#{@form_name}_form"
-  @url = (@method == :post ? kablam.create_path(@table_name) : kablam.update_path(@table_name, obj.id))
+  @url = (@method == :post ? Kablam::Engine.routes.url_helpers.create_path(@table_name) : Kablam::Engine.routes.url_helpers.update_path(@table_name, obj.id))
 %>
 
 <%= form_with model: obj, url: @url, method: @method, id: @form_id, class: classes[:form_wrapper] do |f| %>
@@ -39,7 +39,9 @@
   <% if ajax_remove.present? %>
   submitRemove('<%= @form_id %>');
   <% end %>
+  <% if scrolltop %>
   submitToTop('<%= @form_id %>');
+  <% end %>
   <% if redirect.present? %>
   submitRedirect('<%= @form_id %>');
   <% end %>

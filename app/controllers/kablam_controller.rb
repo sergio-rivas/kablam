@@ -6,7 +6,6 @@ class KablamController < ApplicationController
   before_action :set_model, only: [:create, :update, :undo, :destroy, :form]
   before_action :set_object, only: [:update, :destroy]
   before_action :set_undo_object, only: [:undo]
-  after_action  :redirection, only: [:create, :update, :destroy]
   skip_before_action :verify_authenticity_token, only: [:message]
   include Concerns::ApiSettings
 
@@ -23,6 +22,7 @@ class KablamController < ApplicationController
 
   def message
     @message = JSON.parse(params[:message])
+    redirect_to params[:redirect] if params[:redirect].present?
     respond_to do |format|
       format.js
       format.html do
@@ -36,6 +36,7 @@ class KablamController < ApplicationController
 
     if @object.save
       slack?(:create)
+      redirect_to params[:redirect] if params[:redirect].present?
       respond_to do |format|
         format.js
         format.html do
@@ -51,11 +52,12 @@ class KablamController < ApplicationController
   def update
     if @object.update(model_params)
       slack?(:update)
+      redirect_to params[:redirect] if params[:redirect].present?
       respond_to do |format|
         format.js
         format.html do
           redirect_to request.referrer
-          flash[:notice] = :Destroyed
+          flash[:notice] = :Updated
         end
       end
     else
@@ -66,6 +68,7 @@ class KablamController < ApplicationController
   def destroy
     if @object.destroy
       slack?(:destroy)
+      redirect_to params[:redirect] if params[:redirect].present?
       respond_to do |format|
         format.js
         format.html do
@@ -130,12 +133,6 @@ class KablamController < ApplicationController
       result[k] = send_to_bucket(v)
     end
     result
-  end
-
-  def redirection
-    unless params[:redirect].blank?
-      redirect_to params[:redirect]
-    end
   end
 
   def set_ref
