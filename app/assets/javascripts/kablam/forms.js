@@ -137,6 +137,16 @@ function submitRemove(form_id){
   });
 }
 
+function submitRemove(form_id){
+  var form = document.getElementById(form_id),
+      path = document.getElementById(form_id+'_redirect').value;
+  form.addEventListener("ajax:success", function(e) {
+    e.preventDefault();
+    Turbolinks.visit(path);
+  });
+}
+
+
 function submitToTop(form_id){
   var form = document.getElementById(form_id);
   form.addEventListener("ajax:success", function(e) {

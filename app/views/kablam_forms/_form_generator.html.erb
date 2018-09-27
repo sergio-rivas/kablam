@@ -9,6 +9,9 @@
 %>
 
 <%= form_with model: obj, url: @url, method: @method, id: @form_id, class: classes[:form_wrapper] do |f| %>
+    <% if redirect.present? %>
+    <input id="<%= @form_id %>_redirect" type="hidden" name="redirect" value="<%= redirect %>">
+    <% end %>
     <% if target.present? %>
     <input type="hidden" name="target" value="<%= target %>">
     <% end %>
@@ -34,7 +37,10 @@
 <script>
   initFileUploads({'class': '<%= classes[:file_upload]%>', 'icon': '<%= classes[:file_upload_icon] %>'});
   <% if ajax_remove.present? %>
-  submitRemove('<%= @form_id %>')
+  submitRemove('<%= @form_id %>');
   <% end %>
-  submitToTop('<%= @form_id %>')
+  submitToTop('<%= @form_id %>');
+  <% if redirect.present? %>
+  submitRedirect('<%= @form_id %>');
+  <% end %>
 </script>

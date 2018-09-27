@@ -6,6 +6,7 @@ class KablamController < ApplicationController
   before_action :set_model, only: [:create, :update, :undo, :destroy, :form]
   before_action :set_object, only: [:update, :destroy]
   before_action :set_undo_object, only: [:undo]
+  after_action  :redirection, only: [:create, :update, :destroy]
   skip_before_action :verify_authenticity_token, only: [:message]
   include Concerns::ApiSettings
 
@@ -129,6 +130,12 @@ class KablamController < ApplicationController
       result[k] = send_to_bucket(v)
     end
     result
+  end
+
+  def redirection
+    unless params[:redirect].blank?
+      redirect_to params[:redirect]
+    end
   end
 
   def set_ref
