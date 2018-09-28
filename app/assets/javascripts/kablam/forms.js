@@ -33,19 +33,6 @@ function insertAndExecute(id, text) {
   }
 }
 
-function kablamUpdate(db, id, data={}){
-  var url = '<%= Kablam::Engine.routes.url_helpers.update_path(slug: 'xxx', id:'yyy') %>';
-  url = url.replace('xxx', db);
-  url = url.replace('yyy', id);
-
-  AjaxRequest.patch(
-    {
-      'url': url,
-      'parameters': data
-    }
-  );
-}
-
 function load(target, url) {
   AjaxRequest.get(
     {

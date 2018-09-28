@@ -262,6 +262,10 @@ AjaxRequest.post = function(args) {
   AjaxRequest.doRequest("POST",args);
 };
 
+AjaxRequest.patch = function(args) {
+  AjaxRequest.doRequest("PATCH",args);
+};
+
 AjaxRequest.doRequest = function(method,args) {
   if (typeof(args)!="undefined" && args!=null) {
     var myRequest = new AjaxRequest();
