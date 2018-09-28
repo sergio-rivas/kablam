@@ -14,6 +14,7 @@ module Kablam
   mattr_accessor :dropdown_select
   mattr_accessor :file_upload
   mattr_accessor :file_upload_icon
+  mattr_accessor :datetime_handler
 
   # Checkbox classes
   mattr_accessor :checkbox_group_wrapper

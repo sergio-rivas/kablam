@@ -27,7 +27,7 @@
       <% next if classyy == :exclude %>
       <% input = obj.input(field) %>
       <%= (render "kablam_forms/fields/pretext", classes: classes, input: input) if input[:pretext].present? %>
-      <%= render "kablam_forms/fields/#{classyy.to_s}", classes: classes, input: input, f: f %>
+      <%= render "kablam_forms/fields/#{classyy.to_s}", classes: classes, input: input, f: f, opt: opt %>
     <% end %>
     <%= f.submit(
           data: { disable_with: 'Submitting' },

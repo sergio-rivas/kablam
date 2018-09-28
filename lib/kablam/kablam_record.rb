@@ -25,7 +25,8 @@ module Kablam
         pretext: I18n.translate(:pretext, scope: kablam_scope, default: ""),
         placeholder: I18n.translate(:placeholder, scope: kablam_scope, default: ""),
         hint: I18n.translate(:hint, scope: kablam_scope, default: ""),
-        choices: self.class.choices(field, I18n.locale)
+        choices: self.class.choices(field, I18n.locale),
+        onchange: I18n.translate(:onchange, scope: kablam_scope, default: "")
       }
     end
 
