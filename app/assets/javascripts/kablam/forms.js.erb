@@ -33,6 +33,19 @@ function insertAndExecute(id, text) {
   }
 }
 
+function kablamUpdate(db, id, data={}){
+  var url = '<%= Kablam::Engine.routes.url_helpers.update_path(slug: 'xxx', id:'yyy') %>';
+  url = url.replace('xxx', db);
+  url = url.replace('yyy', id);
+
+  AjaxRequest.patch(
+    {
+      'url': url,
+      'parameters': data
+    }
+  );
+}
+
 function load(target, url) {
   AjaxRequest.get(
     {
@@ -50,6 +63,8 @@ function initFileUploads(opt) {
     fakeFileUpload.className = 'kablam_fakefile';
   var upload_icon = document.createElement('i');
     upload_icon.className = opt['icon'];
+    upload_icon.innerText = "Upload file here..."
+
   var input = document.createElement('input');
     input.type = "text";
     input.className = opt['class'];
@@ -66,7 +81,6 @@ function initFileUploads(opt) {
     var clone = fakeFileUpload.cloneNode(true);
     x[i].parentElement.appendChild(clone);
     x[i].relatedElement = clone.getElementsByTagName('input')[0];
-
     x[i].onchange = x[i].onmouseout = function () {
       path = this.value
       path = path.replace( /fakepath\\/, '...' );
@@ -137,7 +151,7 @@ function submitRemove(form_id){
   });
 }
 
-function submitRemove(form_id){
+function submitRedirect(form_id){
   var form = document.getElementById(form_id),
       path = document.getElementById(form_id+'_redirect').value;
   form.addEventListener("ajax:success", function(e) {

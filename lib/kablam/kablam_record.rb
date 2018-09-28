@@ -20,6 +20,7 @@ module Kablam
       kablam_scope = "kablam_forms.#{self.class.table_name}.#{field}"
       {
         name: "#{form_name}[#{field}]",
+        field: field.to_sym,
         value: send(field),
         label: I18n.translate(:label, scope: kablam_scope, default: ""),
         pretext: I18n.translate(:pretext, scope: kablam_scope, default: ""),
@@ -34,6 +35,13 @@ module Kablam
       nil
     end
 
+    def opt_for(field)
+      Hash[self.class.attribute_names.map{|x| [x,{}]}].merge(self.kablam_options)[field]
+    end
+
+    def kablam_options
+      {}
+    end
 
     def slack_message
       puts "You have not setup slack message for this model.\nto prepare a slack_message, please add method 'slack_message'\nwith content of a hash with keys [:create, :update, :destroy].\n\nFor each key, prepare a value hash like this:\n  ...\n  create:  {\n   pretext: 'some text',\n   author: 'some name',\n   title: 'some title',\n   text: ''\n  },\n  ...\n\nHope this helps!!"
@@ -78,7 +86,7 @@ module Kablam
     end
 
     def self.fields
-      result = self.attribute_names - ["id", "created_at", "updated_at"]
+      result = self.attribute_names - ["id", "created_at", "updated_at", "destroyed_at"]
     end
 
     def self.field_set

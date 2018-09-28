@@ -26,6 +26,7 @@
       <% classyy = @model.prep_form_field[field] %>
       <% next if classyy == :exclude %>
       <% input = obj.input(field) %>
+      <% opt = obj.opt_for(field) %>
       <%= (render "kablam_forms/fields/pretext", classes: classes, input: input) if input[:pretext].present? %>
       <%= render "kablam_forms/fields/#{classyy.to_s}", classes: classes, input: input, f: f, opt: opt %>
     <% end %>

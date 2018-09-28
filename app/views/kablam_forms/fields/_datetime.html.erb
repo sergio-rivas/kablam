@@ -1,14 +1,10 @@
+<div class="<%= classes[:form_group] %>">
+  <label for="<%= input[:name] %>" class="<%= classes[:field_label] %>"><%= raw input[:label] %></label>
+  <small id="<%= input[:name] %>-desc" class="<%= classes[:field_hint] %>"><%= raw input[:hint] %></small>
 <% case Kablam.datetime_handler %>
-<% when "flatpickr" %>
-  <div class="<%= classes[:form_group] %>">
-    <label for="<%= input[:name] %>" class="<%= classes[:field_label] %>"><%= raw input[:label] %></label>
-    <small id="<%= input[:name] %>-desc" class="<%= classes[:field_hint] %>"><%= raw input[:hint] %></small>
-    <input id="<%= input[:id] if input[:id].present? %>" name="<%= input[:name] %>" class="<%= classes[:input] %>" type="text" value="<%= input[:value] %>" data-controller="flatpickr" data-flatpickr-alt-format="Y-m-d" data-flatpickr-default-date="<%= input[:value] %>" data-flatpickr-min-date="<%= Time.zone.now %>" data-flatpickr-max-date="<%= Time.zone.now+120.days %>" data-flatpickr-change="<%= input[:onchange] || "" %>">
-  </div>
+<% when "stimulus-flatpickr" %>
+  <%= f.text_field input[:field], placeholder: input[:placeholder], class: classes[:input] || "", id: input[:id] || "", data: {controller: "flatpickr"}.merge((opt[:data]||{})) %>
 <% else %>
-  <div class="<%= classes[:form_group] %>">
-    <label for="<%= input[:name] %>" class="<%= classes[:field_label] %>"><%= raw input[:label] %></label>
-    <small id="<%= input[:name] %>-desc" class="<%= classes[:field_hint] %>"><%= raw input[:hint] %></small>
-    <input id="<%= input[:id] if input[:id].present? %>" name="<%= input[:name] %>" class="<%= classes[:input] %>" type="datetime-local" value="<%= input[:value] %>">
-  </div>
+  <input id="<%= input[:id] if input[:id].present? %>" name="<%= input[:name] %>" class="<%= classes[:input] %>" type="datetime-local" value="<%= input[:value] %>" style="box-sizing: border-box;">
 <% end %>
+</div>

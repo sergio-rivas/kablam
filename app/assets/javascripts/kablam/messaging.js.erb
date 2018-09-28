@@ -63,7 +63,6 @@ function UserChatSub(chat_div_id, chat_id, channel, user_id, options={}){
 }
 
 function RenderMessage(data) {
-  console.log(data);
   AjaxRequest.post(
     {
       'url': '<%= Kablam::Engine.routes.url_helpers.message_path %>',

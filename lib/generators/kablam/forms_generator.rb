@@ -24,7 +24,7 @@ module Kablam
             ensure_quotes(v)
             next
           end
-          h[k] = v + "__ensure_quotes__\n "
+          h[k] = v + "__ensure_quotes__\n " unless v.blank?
         end
       end
 
