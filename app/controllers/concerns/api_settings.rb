@@ -3,11 +3,13 @@ module Concerns
     extend ActiveSupport::Concern
     require 'securerandom'
     protected
-    def send_to_bucket(bucket, upload_item)
+    def send_to_bucket(upload_item)
       puts "uploading..."
       path = ENV.fetch("BUCKET_TRANSFER_API")
       bucket = ENV.fetch("BUCKET_NAME")
-
+      puts "path: #{path}"
+      puts "bucket: #{bucket}"
+      puts "#{upload_item.class}"
 
       post_params = {"oss"=> {
         "bucket"     => bucket,

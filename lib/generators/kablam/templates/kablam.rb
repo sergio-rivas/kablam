@@ -12,8 +12,8 @@ Kablam.setup do |config|
   #     for the datetime_handler.
   # ===========================================================
   #           .___
-  #           [__  _ ._.._ _  Classes &
-  #           |   (_)[  [ | )   Handlers
+  #           [__  _ ._.._ _  Classes
+  #           |   (_)[  [ | )
   # ===========================================================
 
   # These classes are used for the labels/group-wrappers, etc.
@@ -31,7 +31,6 @@ Kablam.setup do |config|
   config.dropdown_select =  "ba bg-white b--black-20 pa2 mb2 db w-100"
   config.file_upload =  "ba b--black-20 pa5 mb2 db w-100 b--dashed b--red"
   config.file_upload_icon =  "fa fa-upload absolute left-0 right-0 ml-auto mr-auto top-2 mt3 f1 black-05"
-  config.datetime_handler = nil
 
   # Checkbox Classes
   config.checkbox_group_wrapper =  "" # Wrapper around all checkboxes
@@ -49,7 +48,8 @@ Kablam.setup do |config|
   config.multi_remove_icon =  "fa fa-trash"
 
   # ============================================================
-  #                     KABLAM MESSAGING
+  #                     KABLAM OPTIONS
   # ============================================================
-  config.message_location = "start" # Accepted values are "start" and "end"
+  config.datetime_handler = nil
+  config.render_item["message"] = "top" #also accepts bottom
 end

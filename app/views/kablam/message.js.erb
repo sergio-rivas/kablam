@@ -2,8 +2,8 @@ var content = `<%= j render "kablam/message", message: @message %>`;
 var newMessage = HTMLElement.From(content);
 var target = document.getElementById("kablam-chat-window");
 
-<% if Kablam.message_location == "start" %>
+<% if Kablam.render_item["message"] == "top" %>
   target.innerHTML = newMessage.outerHTML + target.innerHTML;
-<% elsif Kablam.message_location == "end" %>
+<% elsif Kablam.render_item["message"] == "bottom" %>
   target.innerHTML = target.innerHTML + newMessage.outerHTML;
 <% end %>

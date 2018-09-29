@@ -105,28 +105,28 @@ function rmParent(el){
 
 
 Object.defineProperty(HTMLElement, 'From', {
-    enumerable: false,
-    value: (function (document) {
-        //https://www.measurethat.net/Benchmarks/Show/2149/0/element-creation-speed
-        var rgx = /(\S+)=(["'])(.*?)(?:\2)|(\w+)/g;
-        return function CreateElementFromHTML(html) {
-            html = html.trim();
-            var bodystart = html.indexOf('>') + 1, bodyend = html.lastIndexOf('<');
-            var elemStart = html.substr(0, bodystart);
-            var innerHTML = html.substr(bodystart, bodyend - bodystart);
-            rgx.lastIndex = 0;
-            var elem = document.createElement(rgx.exec(elemStart)[4]);
-            var match; while ((match = rgx.exec(elemStart))) {
-                if (match[1] === undefined) {
-                    elem.setAttribute(match[4], "");
-                } else {
-                    elem.setAttribute(match[1], match[3]);
-                }
-            }
-            elem.innerHTML = innerHTML;
-            return elem;
-        };
-    }(window.document))
+  enumerable: false,
+  value: (function (document) {
+    //https://www.measurethat.net/Benchmarks/Show/2149/0/element-creation-speed
+    var rgx = /(\S+)=(["'])(.*?)(?:\2)|(\w+)/g;
+    return function CreateElementFromHTML(html) {
+      html = html.trim();
+      var bodystart = html.indexOf('>') + 1, bodyend = html.lastIndexOf('<');
+      var elemStart = html.substr(0, bodystart);
+      var innerHTML = html.substr(bodystart, bodyend - bodystart);
+      rgx.lastIndex = 0;
+      var elem = document.createElement(rgx.exec(elemStart)[4]);
+      var match; while ((match = rgx.exec(elemStart))) {
+        if (match[1] === undefined) {
+          elem.setAttribute(match[4], "");
+        } else {
+          elem.setAttribute(match[1], match[3]);
+        }
+      }
+      elem.innerHTML = innerHTML;
+      return elem;
+    };
+  }(window.document))
 });
 
 
@@ -135,6 +135,14 @@ function submitRemove(form_id){
   form.addEventListener("ajax:success", function(e) {
     e.preventDefault();
     form.remove();
+  });
+}
+
+function submitClear(form_id){
+  var form = document.getElementById(form_id);
+  form.addEventListener("ajax:success", function(e) {
+    e.preventDefault();
+    form.reset();
   });
 }
 

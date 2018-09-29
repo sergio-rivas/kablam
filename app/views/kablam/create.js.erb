@@ -1,12 +1,14 @@
 <% if params[:target].present? %>
 var content = `<%= j render "kablam/models/#{@object.model_name.singular}", obj: @object %>`
-
-document
+var newMessage = HTMLElement.From(content);
+var target = document
   .getElementById('<%= params[:target] || "target_index" %>')
-  .insertAdjacentHTML('beforeend', content)
 
-document
-  .querySelector('[action$="/<%= params[:target] || "target_index" %>"]')
-  .reset()
+<% if Kablam.render_item["#{@object.class.table_name}"] == "top" %>
+  target.innerHTML = newMessage.outerHTML + target.innerHTML;
+<% elsif Kablam.render_item["#{@object.class.table_name}"] == "bottom" %>
+  target.innerHTML = target.innerHTML + newMessage.outerHTML;
+<% end %>
+
 <% end %>
 <%= render_flash message: 'Created' %>

@@ -28,7 +28,7 @@ module Kablam
         hint: I18n.translate(:hint, scope: kablam_scope, default: ""),
         choices: self.class.choices(field, I18n.locale),
         onchange: I18n.translate(:onchange, scope: kablam_scope, default: ""),
-        true_statement: I18n.translate(:hint, scope: kablam_scope, default: "")
+        true_statement: I18n.translate(:true_statement, scope: kablam_scope, default: "")
       }
     end
 
@@ -96,6 +96,7 @@ module Kablam
         text: [],
         hidden: [],
         select: [],
+        datetime: [],
         checkbox_array: [],
         checkbox_boolean: [],
         multi_inputs: [],
@@ -112,11 +113,13 @@ module Kablam
       # This method will prepare hash of hashes
       # for each data-field w/ the form input type.
       # ex: date, radio, select, etc.
+
       obj = self.new
       hashy = {}
       fields_array = self.fields
       fields_array.each do |k|
-        hashy[k] = obj.column_for_attribute(k).type
+        hashy[k] = :not_set
+        hashy[k] = obj.column_for_attribute(k).type if obj.column_for_attribute(k).type
         hashy[k] = :input             if     [:string, :float, :integer].include? hashy[k]
         hashy[k] = :checkbox_boolean  if     [:boolean].include? hashy[k]
         self.field_set.keys.each{|type| hashy[k] = type if self.field_set[type].include?(k)}

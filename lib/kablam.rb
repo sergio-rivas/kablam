@@ -14,7 +14,6 @@ module Kablam
   mattr_accessor :dropdown_select
   mattr_accessor :file_upload
   mattr_accessor :file_upload_icon
-  mattr_accessor :datetime_handler
 
   # Checkbox classes
   mattr_accessor :checkbox_group_wrapper
@@ -29,8 +28,9 @@ module Kablam
   mattr_accessor :multi_add_icon
   mattr_accessor :multi_remove_icon
 
-  # Message settings
-  mattr_accessor :message_location
+  # Options settings
+  mattr_accessor :datetime_handler
+  mattr_accessor :render_item, default: {}
 
   module ClassMethods
 
