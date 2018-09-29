@@ -9,6 +9,8 @@
   ajax_remove = ajax_remove || false
   redirect = redirect || nil
   scrolltop = scrolltop || false
+  @kablam_before = {}
+  @kablam_after = {}
  %>
 <%= render "kablam_forms/form_generator", classes: classes, obj: obj, target: target, hidden: hidden, ajax_remove: ajax_remove, redirect: redirect, scrolltop: scrolltop do |f| %>
   <%= yield(f) %>
