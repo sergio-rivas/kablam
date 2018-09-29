@@ -1,5 +1,6 @@
-*Documentation In Progress*
 ![](http://bcdbimages.s3.amazonaws.com/nick/kablam.jpg)
+
+*Documentation In Progress*
 # Large Scale Automation. Small Scale Customization.
 The concept of this gem is simple. And, although it goes slightly against the "Convention Over Configuration" ideal that makes Rails an **AWESOME** and powerful tool, you'll see how it makes devloping a large-scale application super easy. The concept came when styling 20-50 form fields for a really large table just drained the energy from my day.
 
