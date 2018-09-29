@@ -17,7 +17,7 @@ The Kablam Locale YML will contain *ALL THE TEXT* rendered in your forms. All th
 
 In Your Model, you will be able to adjust kablams automatic rendering of forms by letting it know which columns to render in what way. 
 
-USAGE
+KABLAM FORMS
 -------------
 *insert pretext explaining forms & comparing w/ form_for and simple_form_for*
 
@@ -66,3 +66,7 @@ To use form_for helpers\* (note: still needs testing):
   <%= f.text_field :some_column, value: "a value" %>
 <% end %>
 ```
+
+KABLAM MESSAGING
+----------
+*To DO: Make documentation on setting up / using Kablam Messaging*
