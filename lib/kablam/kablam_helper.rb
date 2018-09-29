@@ -9,6 +9,12 @@ module Kablam
       polymorphic_path("data_undo", params)
     end
 
+    def kablam_form_for(obj, options = {}, &block)
+      options[:obj] = obj
+      options[:block] = block_given? ? block : ""
+      render (partial: "kablam_forms/kablam_form", locals: options)
+    end
+
     # TODO: Complete this 🤷
     def disable_test
       'console.log("test")'

@@ -11,7 +11,9 @@
   scrolltop = scrolltop || false
  %>
 
-<%= render "kablam_forms/form_generator", classes: classes, obj: obj, target: target, hidden: hidden, ajax_remove: ajax_remove, redirect: redirect, scrolltop: scrolltop %>
+<%= render "kablam_forms/form_generator", classes: classes, obj: obj, target: target, hidden: hidden, ajax_remove: ajax_remove, redirect: redirect, scrolltop: scrolltop do %>
+<%= capture(&block) if block_given? %>
+<% end %>
 
 
 

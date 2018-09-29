@@ -30,6 +30,8 @@
       <%= (render "kablam_forms/fields/pretext", classes: classes, input: input) if input[:pretext].present? %>
       <%= render "kablam_forms/fields/#{classyy.to_s}", classes: classes, input: input, f: f, opt: opt %>
     <% end %>
+
+    <%= capture(&block) if block_given? %>
     <%= f.submit(
           data: { disable_with: 'Submitting' },
           class: classes[:submit_button]) %>
