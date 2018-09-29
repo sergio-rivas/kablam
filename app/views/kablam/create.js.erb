@@ -4,9 +4,9 @@ var newMessage = HTMLElement.From(content);
 var target = document
   .getElementById('<%= params[:target] || "target_index" %>')
 
-<% if Kablam.render_item["#{@object.class.table_name}"] == "top" %>
+<% if Kablam.render_item["#{@object.model_name.singular}"] == "top" %>
   target.innerHTML = newMessage.outerHTML + target.innerHTML;
-<% elsif Kablam.render_item["#{@object.class.table_name}"] == "bottom" %>
+<% elsif Kablam.render_item["#{@object.model_name.singular}"] == "bottom" %>
   target.innerHTML = target.innerHTML + newMessage.outerHTML;
 <% end %>
 
