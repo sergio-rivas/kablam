@@ -7,8 +7,8 @@
   @form_id = "#{obj.id.blank? ? "new" : "update"}_#{@form_name}_form"
   @url = (@method == :post ? Kablam::Engine.routes.url_helpers.create_path(@table_name) : Kablam::Engine.routes.url_helpers.update_path(@table_name, obj.id))
 %>
-<% yield %>
 <%= form_with model: obj, url: @url, method: @method, id: @form_id, class: classes[:form_wrapper], multipart: true do |f| %>
+<% yield(f) %>
     <% if redirect.present? %>
     <input id="<%= @form_id %>_redirect" type="hidden" name="redirect" value="<%= redirect %>">
     <% end %>
