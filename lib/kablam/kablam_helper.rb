@@ -9,6 +9,28 @@ module Kablam
       polymorphic_path("data_undo", params)
     end
 
+    def kablam_form_for(obj, options = {}, &block)
+      # @kablam_content = {}
+      options[:obj] = obj
+      # options[:block] = block_given? ? block : ""
+      render layout: "kablam_forms/kablam_form", locals: options do |f|
+        capture(f, &block) if block_given?
+      end
+      # nil
+    end
+
+    def kablam_before(field, &block)
+      @kablam_before = {} if @kablam_before.blank?
+      @kablam_before[field] = block
+      nil
+    end
+
+    def kablam_after(field, &block)
+      @kablam_after = {} if @kablam_after.blank?
+      @kablam_after[field] = block
+      nil
+    end
+
     # TODO: Complete this 🤷
     def disable_test
       'console.log("test")'

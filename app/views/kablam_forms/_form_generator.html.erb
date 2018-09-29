@@ -7,7 +7,7 @@
   @form_id = "#{obj.id.blank? ? "new" : "update"}_#{@form_name}_form"
   @url = (@method == :post ? Kablam::Engine.routes.url_helpers.create_path(@table_name) : Kablam::Engine.routes.url_helpers.update_path(@table_name, obj.id))
 %>
-
+<% yield %>
 <%= form_with model: obj, url: @url, method: @method, id: @form_id, class: classes[:form_wrapper], multipart: true do |f| %>
     <% if redirect.present? %>
     <input id="<%= @form_id %>_redirect" type="hidden" name="redirect" value="<%= redirect %>">
@@ -22,6 +22,7 @@
       <% end %>
     <% end %>
     <% @model.fields.each do |field| %>
+      <%= capture(&@kablam_before[field]) if @kablam_before[field].present? %>
       <% kablam_scope = "kablam_forms.#{@table_name}.#{field}" %>
       <% classyy = @model.prep_form_field[field] %>
       <% next if classyy == :exclude %>
@@ -29,7 +30,11 @@
       <% opt = obj.opt_for(field) %>
       <%= (render "kablam_forms/fields/pretext", classes: classes, input: input) if input[:pretext].present? %>
       <%= render "kablam_forms/fields/#{classyy.to_s}", classes: classes, input: input, f: f, opt: opt %>
+      <%= capture(&@kablam_after[field]) if @kablam_after[field].present? %>
     <% end %>
+    <div>
+      <%= yield(f) %>
+    </div>
     <%= f.submit(
           data: { disable_with: 'Submitting' },
           class: classes[:submit_button]) %>
