@@ -6,6 +6,7 @@ class KablamController < ApplicationController
   before_action :set_model, only: [:create, :update, :undo, :destroy, :form]
   before_action :set_object, only: [:update, :destroy]
   before_action :set_undo_object, only: [:undo]
+  before_action :set_partial, only: [:create, :update]
   skip_before_action :verify_authenticity_token, only: [:message]
   include Concerns::ApiSettings
 
@@ -133,6 +134,10 @@ class KablamController < ApplicationController
       result[k] = send_to_bucket(v)
     end
     result
+  end
+
+  def set_partial
+    @partial = params[:partial].blank? ? "kablam/models/#{@object.model_name.singular}" : params[:partial]
   end
 
   def set_ref

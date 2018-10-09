@@ -1,9 +1,9 @@
 <% if params[:target].present? %>
 
-var objRow = byId('<%= @object.html_id %>')
-var content = `<%= j render "kablam/models/#{@object.model_name.singular}", obj: @object %>`
-var newRow = HTMLElement.From(content);
+var content = `<%= j render @partial, obj: @object %>`
+var contentHtml = HTMLElement.From(content);
+var target = document.getElementById('<%= params[:target] %>')
 
-objRow.innerHTML = newRow.innerHTML
+target.innerHTML = contentHtml.innerHTML
 <% end %>
 <%= render_flash message: 'Information has been updated 👍' %>

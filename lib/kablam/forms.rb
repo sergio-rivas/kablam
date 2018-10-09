@@ -4,6 +4,10 @@ module Kablam
       "<a class=\'#{opt[:class]}\' onclick=\'event.preventDefault();load(\"#{target_id}\", \"/kablam/#{obj.class.table_name}/form?id=#{obj.id}&target=#{table_id}\")\' href=\'#\'>#{opt[:text] || "Edit"}</a>"
     end
 
+    def self.render_form(obj, target_id, table_id, opt={})
+      "<a class=\'#{opt[:class]}\' onclick=\'event.preventDefault();load(\"#{target_id}\", \"/kablam/#{obj.class.table_name}/form?#{('id='+obj.id+'&') if obj.id.present?}&target=#{table_id}\")\' href=\'#\'>#{opt[:text] || "Edit"}</a>"
+    end
+
     def self.render_destroy(obj, opt={})
       "<a data-disable-with=\'…\' class=\'#{opt[:class]}\' data-remote=\'true\' rel=\'nofollow\' data-method=\'delete\' href=\'/kablam/#{obj.class.table_name}/#{obj.id}\'>#{opt[:text] || "Remove"}</a>"
     end

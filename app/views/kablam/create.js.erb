@@ -1,13 +1,14 @@
 <% if params[:target].present? %>
-var content = `<%= j render "kablam/models/#{@object.model_name.singular}", obj: @object %>`
-var newMessage = HTMLElement.From(content);
-var target = document
-  .getElementById('<%= params[:target] || "target_index" %>')
+var content = `<%= j render @partial, obj: @object %>`
+var contentHtml = HTMLElement.From(content);
+var target = document.getElementById('<%= params[:target] %>')
 
 <% if Kablam.render_item["#{@object.model_name.singular}"] == "top" %>
-  target.innerHTML = newMessage.outerHTML + target.innerHTML;
+  target.innerHTML = contentHtml.outerHTML + target.innerHTML;
 <% elsif Kablam.render_item["#{@object.model_name.singular}"] == "bottom" %>
-  target.innerHTML = target.innerHTML + newMessage.outerHTML;
+  target.innerHTML = target.innerHTML + contentHtml.outerHTML;
+<% elsif Kablam.render_item["#{@object.model_name.singular}"] == "replace" %>
+  target.innerHTML = contentHtml.outerHTML
 <% end %>
 
 <% end %>
